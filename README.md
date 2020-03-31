@@ -2,4 +2,4 @@
 
 ![Laptop mode](static/homepage.png)
 ![Tablet](static/tablet.png)
-![Mobile](static/mobile)
+![Mobile](static/mobile.png)
