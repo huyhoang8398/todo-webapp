@@ -8,29 +8,52 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
 </head>
 
 <body>
   <h1 style="text-align: center" ; class="mt-5">TODO List App</h1>
+  <section class="nes-container is-dark">
+    <section class="message-list">
+      <section class="message -left">
+        <i class="nes-bcrikko"></i>
+        <!-- Balloon -->
+        <div class="nes-balloon from-left is-dark">
+          <p>Hi kn, What do your plan for today?</p>
+        </div>
+      </section>
+
+      <section class="message -right">
+        <!-- Balloon -->
+        <div class="nes-balloon from-right is-dark">
+          <p>Errrrrrrr, too lazyyyyyyyyyy !!!</p>
+        </div>
+        <i class="nes-bcrikko"></i>
+      </section>
+    </section>
+  </section>
+  </section>
+
   <div class="container">
     <div class="input-group mb-3 mt-4">
       <div class="input-group-prepend">
-        <button class="btn  btn-warning" type="button" onclick="newItem()" id="new-item">Add</button>
+        <button class="nes-btn is-error" type="button" onclick="newItem()" id="new-item">Add</button>
       </div>
-      <input type="text" class="form-control" placeholder="Add new Todo item" aria-label=""
-        aria-describedby="basic-addon1" id="new-todo">
-      </div>
-      <ul id="todo-list" class="list-group"></ul>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      <input type="text" class="form-control nes-textarea" placeholder="Add new Todo item" aria-label=""
+        aria-describedby="basic-addon1" id="new-todo" required>
+    </div>
+    <ul id="todo-list" class="list-group mb-5"></ul>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
       integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
       crossorigin="anonymous"></script>
-      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
       crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"></script>
-      <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

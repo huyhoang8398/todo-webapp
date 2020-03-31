@@ -22,11 +22,15 @@ function getData() {
 
 function newItem() {
   let data = document.getElementById("new-todo").value;
-  let item = new Item(data);
-  todoItems.push(item);
-  saveData();
-  document.getElementById("new-todo").value = "";
-  listItems();
+  if(!data) {
+    alert("You should add todo item!");
+  } else {
+    let item = new Item(data);
+    todoItems.push(item);
+    saveData();
+    document.getElementById("new-todo").value = "";
+    listItems();
+  }
 }
 
 function listItems() {
@@ -34,7 +38,7 @@ function listItems() {
   for (let data in todoItems) {
     let todo = todoItems[data].data;
     console.log(todo);
-    li += `<li class="list-group-item list-group-item-action list-group-item-info" id="data${data}">${todo}</br></br><div class="btn-group" role="group" aria-label="button-option"><button class="btn btn-outline-danger btn-sm mr-1" onclick="delItem(this.id)" id="delbut${data}">Done</button><div class="btn-group-toggle" data-toggle="buttons"><label class="btn btn-outline-info btn-sm"><input type="checkbox" autocomplete="off">Checked</label></div></div></li>`;
+    li += `<li class="list-group-item list-group-item-action list-group-item-info" id="data${data}">${todo}</br></br><button class="nes-btn is-warning mr-5" onclick="delItem(this.id)" id="delbut${data}">Done</button><label><input type="checkbox" class="nes-checkbox" /><span>Check</span></label></li>`;
   }
   $("#todo-list").html(li);
 }
