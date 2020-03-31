@@ -1,24 +1,51 @@
-function newTodo() {
-  let ul = document.getElementById('todo-list');
-  let list = document.createElement("li");
-  let br = document.createElement('br');
+var todoItems = [];
 
-  let newDelButton = document.createElement('button');
-  newDelButton.className = "btn btn-outline-danger btn-sm";
-  newDelButton.innerHTML = 'Done';
-  newDelButton.id = "done";
-  newDelButton.addEventListener('click', delItem);
+class Item {
+  constructor(data) {
+    this.data = data;
+  }
+}
 
-  let newToDo = document.createTextNode(document.getElementById("new-todo").value);
-  list.appendChild(newToDo);
-  list.appendChild(br);
-  list.appendChild(newDelButton)
-  list.className = "list-group-item list-group-item-action list-group-item-info";
-  ul.appendChild(list);
+function saveData() {
+  let str = JSON.stringify(todoItems);
+  localStorage.setItem("todos", str);
+}
+
+function getData() {
+  let str = localStorage.getItem("todos");
+  todoItems = JSON.parse(str);
+  console.log(todoItems);
+  if (!todoItems) {
+    todoItems = [];
+  }
+}
+
+function newItem() {
+  let data = document.getElementById("new-todo").value;
+  let item = new Item(data);
+  todoItems.push(item);
+  saveData();
   document.getElementById("new-todo").value = "";
+  listItems();
 }
 
-function delItem() {
-  let div = this.parentElement;
-  div.style.display = "none";
+function listItems() {
+  let li = "";
+  for (let data in todoItems) {
+    let todo = todoItems[data].data;
+    console.log(todo);
+    li += `<li class="list-group-item list-group-item-action list-group-item-info" id="data${data}">${todo}</br></br><div class="btn-group" role="group" aria-label="button-option"><button class="btn btn-outline-danger btn-sm mr-1" onclick="delItem(this.id)" id="delbut${data}">Done</button><div class="btn-group-toggle" data-toggle="buttons"><label class="btn btn-outline-info btn-sm"><input type="checkbox" autocomplete="off">Checked</label></div></div></li>`;
+  }
+  $("#todo-list").html(li);
 }
+
+function delItem(index) {
+  let dataDelID = "data" + index.slice(-1);
+  let div = document.getElementById(dataDelID);
+  div.style.display = 'none';
+  todoItems.splice(index.slice(-1), 1);
+  saveData();
+}
+
+getData();
+listItems();
