@@ -15,7 +15,6 @@ function saveData() {
 function getData() {
   let str = localStorage.getItem("todos");
   todoItems = JSON.parse(str);
-  console.log(todoItems);
   if (!todoItems) {
     todoItems = [];
   }
@@ -39,9 +38,8 @@ function listItems() {
   let li = "";
   for (let data in todoItems) {
     let todo = todoItems[data].data;
-    let confirm = todoItems[data].confirm;
-    if (confirm) {
-      li += `<li class="list-group-item list-group-item-action list-group-item-info" id="data${data}">${todo}</br></br><button class="nes-btn is-warning mr-5" onclick="delItem(this.id)" id="delbut${data}">Done</button><label><input type="checkbox" class="nes-checkbox" id="confirm${data}" conclick="checkedItem(this.id)" checked/><span>Check</span></label></li>`;
+    if (todoItems[data].confirm) {
+      li += `<li class="list-group-item list-group-item-action list-group-item-info" id="data${data}">${todo}</br></br><button class="nes-btn is-warning mr-5" onclick="delItem(this.id)" id="delbut${data}">Done</button><label><input type="checkbox" class="nes-checkbox" id="confirm${data}" onclick="checkedItem(this.id)" checked/><span>Check</span></label></li>`;
     } else {
       li += `<li class="list-group-item list-group-item-action list-group-item-info" id="data${data}">${todo}</br></br><button class="nes-btn is-warning mr-5" onclick="delItem(this.id)" id="delbut${data}">Done</button><label><input type="checkbox" class="nes-checkbox" id="confirm${data}" onclick="checkedItem(this.id)" /><span>Check</span></label></li>`;
     }
@@ -50,8 +48,7 @@ function listItems() {
 }
 function delItem(index) {
   let dataDelID = "data" + index.slice(-1);
-  let div = document.getElementById(dataDelID);
-  div.style.display = 'none';
+  document.getElementById(dataDelID).style.display = 'none';
   todoItems.splice(index.slice(-1), 1);
   saveData();
 }
@@ -60,12 +57,7 @@ function checkedItem(index) {
   let checkedID = index.slice(-1);
   let checkboxID = "confirm" + checkedID;
   let checkBox = document.getElementById(checkboxID);
-  if (checkBox.checked == true) {
-    todoItems[checkedID].confirm = true;
-  }
-  else {
-    todoItems[checkedID].confirm = false;
-  }
+  todoItems[checkedID].confirm = checkBox.checked;
   saveData();
 }
 
